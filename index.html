@@ -117,6 +117,25 @@
             margin-bottom: 10px;
         }
 
+        #backButton {
+            display: none;
+            background-color: #f85858;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            width: auto;
+            animation: scaleUp 0.5s ease-in-out;
+        }
+
+        #backButton:hover {
+            background-color: #c0392b;
+        }
+
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -148,21 +167,25 @@
         <br>Брось вызов вместе со мной, и давай покажем, что настоящая победа — это веселье, которое мы разделяем вместе!
         <br> Пойдем в Valorant, командная победа ждет нас! 🎮💪
     </p>
-    <button onclick="playVideo()">Принять приглашение</button>
+    <button id="invitationButton" onclick="playVideo()">Принять приглашение</button>
     <iframe id="apologyVideo" width="800" height="450" src="https://www.youtube.com/embed/12qTHu3COOQ?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
     <textarea id="reviewInput" placeholder="Напиши плиз как тебе моя работа..." rows="4"></textarea>
     <button id="reviewButton" onclick="submitReview()">Отправить отзыв</button>
     <div id="reviews">
         <h2>Ваши прекрасные отзывы</h2>
     </div>
+    <button id="backButton" onclick="goBack()" style="display: none;">Назад</button>
     <script>
         window.onload = function () {
             loadReviews();
         };
 
+        // Переменные для отслеживания состояния страницы
+        var invitationButton = document.getElementById('invitationButton');
+        var backButton = document.getElementById('backButton');
+
         function playVideo() {
             var videoFrame = document.getElementById('apologyVideo');
-            var button = document.querySelector('button');
             var title = document.getElementById('title');
             var text = document.getElementById('text');
             var reviewInput = document.getElementById('reviewInput');
@@ -173,8 +196,9 @@
             videoFrame.style.display = 'block';
             reviewInput.style.display = 'block';
             reviewButton.style.display = 'block';
+            backButton.style.display = 'block';
 
-            button.style.display = 'none';
+            invitationButton.style.display = 'none';
             title.innerHTML = "БЕЗУМНО МОЖНО БЫТЬ ПЕРВЫМ";
             text.style.display = 'none';
 
@@ -219,6 +243,28 @@
 
         function setReviewsToStorage(reviews) {
             localStorage.setItem('reviews', JSON.stringify(reviews));
+        }
+
+        function goBack() {
+            // Возврат к приглашению
+            var videoFrame = document.getElementById('apologyVideo');
+            var title = document.getElementById('title');
+            var text = document.getElementById('text');
+            var reviewInput = document.getElementById('reviewInput');
+            var reviewButton = document.getElementById('reviewButton');
+            var reviewsContainer = document.getElementById('reviews');
+
+            document.querySelector('img').style.display = 'block';
+            videoFrame.style.display = 'none';
+            reviewInput.style.display = 'none';
+            reviewButton.style.display = 'none';
+            backButton.style.display = 'none';
+
+            invitationButton.style.display = 'block';
+            title.innerHTML = "ВИКА ПОЙДЕМ ВАЛОРАНТ?";
+            text.style.display = 'block';
+
+            reviewsContainer.style.display = 'none';
         }
     </script>
 </body>
