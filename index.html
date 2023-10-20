@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Мета-теги для настройки документа -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Заголовок страницы -->
     <title>ВИКА ПОЙДЕМ ВАЛОРАНТ?</title>
-
-    <!-- Стили для оформления страницы -->
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #dadada;
+            font-family: 'Roboto', sans-serif;
+            background-color: #d6eeff;
+            color: #fff;
             text-align: center;
             margin: 50px auto;
             max-width: 1200px;
@@ -21,26 +17,32 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
+
         h1 {
             color: #3498db;
             font-size: 48px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
+
         p {
-            color: #555;
+            color: #181414;
             font-size: 1.2em;
             text-align: center;
             line-height: 1.6;
-            margin-top: 10px;
+            margin-top: 12px;
         }
+
         img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 30px 0;
             animation: bounce 1s infinite alternate;
         }
+
         button {
             background-color: #3498db;
             color: #fff;
@@ -50,12 +52,15 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            margin-top: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
             width: auto;
             animation: scaleUp 0.5s ease-in-out;
         }
+
         button:hover {
             background-color: #2672af;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
         #apologyVideo {
@@ -135,39 +140,22 @@
     </style>
 </head>
 <body>
-    <!-- Заголовок страницы -->
     <h1 id="title">ВИКА ПОЙДЕМ ВАЛОРАНТ?</h1>
-
-    <!-- Изображение с анимацией -->
     <img src="https://s1.bloknot-volgograd.ru/thumb/850x0xcut/upload/iblock/e60/m65ur23r3adn11px9ubfvv856xjjrqb0/photo_2023_08_14_13_04_23.jpg" alt="Извинительное изображение">
-
-    <!-- Текст с приглашением и анимацией -->
-    <p id="text">Вику, ты моя неотразимая союзница в жизни, а не противник в гейме! Позволь мне убедить тебя в этом, предлагая совместно покорять виртуальные арены Valorant. 
+    <p id="text">Вику, ты моя неотразимая союзница в жизни, а не противник в гейме! 
+        <br>Позволь мне убедить тебя в этом, предлагая совместно покорять виртуальные арены Valorant. 
         <br>Давай сделаем игру еще более захватывающей, чем наши повседневные приключения. 
         <br>Брось вызов вместе со мной, и давай покажем, что настоящая победа — это веселье, которое мы разделяем вместе!
-        <br> Пойдем в Valorant, командная победа ждет нас!. 🎮💪
+        <br> Пойдем в Valorant, командная победа ждет нас! 🎮💪
     </p>
-
-    <!-- Кнопка с анимацией и обработчиком события -->
     <button onclick="playVideo()">Принять приглашение</button>
-
-    <!-- Видео с анимацией -->
     <iframe id="apologyVideo" width="800" height="450" src="https://www.youtube.com/embed/12qTHu3COOQ?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
-
-    <!-- Поле для отзыва -->
     <textarea id="reviewInput" placeholder="Напиши плиз как тебе моя работа..." rows="4"></textarea>
-
-    <!-- Кнопка для отправки отзыва -->
     <button id="reviewButton" onclick="submitReview()">Отправить отзыв</button>
-
-    <!-- Блок с отзывами -->
     <div id="reviews">
         <h2>Ваши прекрасные отзывы</h2>
     </div>
-
-    <!-- JavaScript для управления элементами страницы -->
     <script>
-        // Загружаем сохраненные отзывы при загрузке страницы
         window.onload = function () {
             loadReviews();
         };
@@ -180,19 +168,16 @@
             var reviewInput = document.getElementById('reviewInput');
             var reviewButton = document.getElementById('reviewButton');
             var reviewsContainer = document.getElementById('reviews');
-            
-            // Переключаем видимость элементов
+
             document.querySelector('img').style.display = 'none';
             videoFrame.style.display = 'block';
             reviewInput.style.display = 'block';
             reviewButton.style.display = 'block';
 
-            // Скрываем элементы после нажатия
             button.style.display = 'none';
             title.innerHTML = "БЕЗУМНО МОЖНО БЫТЬ ПЕРВЫМ";
             text.style.display = 'none';
 
-            // Показываем блок с отзывами
             reviewsContainer.style.display = 'block';
         }
 
@@ -201,33 +186,25 @@
             var reviewsContainer = document.getElementById('reviews');
             var reviewText = reviewInput.value;
 
-            // Создаем новый элемент для отзыва
             var reviewElement = document.createElement('p');
             reviewElement.textContent = reviewText;
 
-            // Добавляем отзыв в блок с отзывами
             reviewsContainer.appendChild(reviewElement);
-
-            // Сохраняем отзыв в localStorage
             saveReview(reviewText);
 
-            // Очистим поле отзыва после отправки
             reviewInput.value = '';
         }
 
-        // Сохранение отзыва в localStorage
         function saveReview(review) {
             var savedReviews = getReviewsFromStorage();
             savedReviews.push(review);
             setReviewsToStorage(savedReviews);
         }
 
-        // Загрузка отзывов из localStorage
         function loadReviews() {
             var reviewsContainer = document.getElementById('reviews');
             var savedReviews = getReviewsFromStorage();
 
-            // Создаем элементы для каждого отзыва и добавляем их в блок с отзывами
             savedReviews.forEach(function (reviewText) {
                 var reviewElement = document.createElement('p');
                 reviewElement.textContent = reviewText;
@@ -235,13 +212,11 @@
             });
         }
 
-        // Получение отзывов из localStorage
         function getReviewsFromStorage() {
             var savedReviews = localStorage.getItem('reviews');
             return savedReviews ? JSON.parse(savedReviews) : [];
         }
 
-        // Установка отзывов в localStorage
         function setReviewsToStorage(reviews) {
             localStorage.setItem('reviews', JSON.stringify(reviews));
         }
