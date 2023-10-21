@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ВИКА ПОЙДЕМ ВАЛОРАНТ?</title>
+    <title>ПОЙДЕМ ВАЛОРАНТ?</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -63,7 +63,7 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        #apologyVideo {
+        #newVideo {
             width: 100%;
             max-width: 800px;
             height: 450px;
@@ -122,7 +122,7 @@
     </style>
 </head>
 <body>
-    <h1 id="title">ВИКА ПОЙДЕМ ВАЛОРАНТ?</h1>
+    <h1 id="title">ПОЙДЕМ ВАЛОРАНТ?</h1>
     <img src="https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1eafac47b60442fd/65300e6917d9b40233fc8c02/7-3-GamePlay-Reveal-Thumbnail-Textless.jpg" alt="Извинительное изображение">
     <p id="text">
         Давай сделаем игру еще более захватывающей, чем наши повседневные приключения. 
@@ -130,7 +130,7 @@
         <br> Пойдем в Valorant, командная победа ждет нас! 🎮💪
     </p>
     <button id="invitationButton" onclick="playVideo()">Принять приглашение</button>
-    <iframe id="apologyVideo" width="800" height="450" src="https://www.youtube.com/embed/12qTHu3COOQ?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
+    <iframe id="newVideo" width="800" height="450" src="https://www.youtube.com/embed/12qTHu3COOQ?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
     <div id="reviews">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4cAVYNgaXw1MuSst0s30tbTB7NHfqFi0dD5HEOrqKGfxo4g/viewform?embedded=true" width="640" height="419" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
     </div>
@@ -147,7 +147,7 @@
         var originalText = textElement.innerHTML;
 
         function playVideo() {
-            var videoFrame = document.getElementById('apologyVideo');
+            var videoFrame = document.getElementById('newVideo');
             var title = document.getElementById('title');
             var reviewsContainer = document.getElementById('reviews');
 
@@ -164,7 +164,7 @@
 
         function goBack() {
             // Возврат к приглашению
-            var videoFrame = document.getElementById('apologyVideo');
+            var videoFrame = document.getElementById('newVideo');
             var title = document.getElementById('title');
             var reviewsContainer = document.getElementById('reviews');
 
