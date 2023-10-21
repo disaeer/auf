@@ -73,48 +73,11 @@
             margin-bottom: 20px;
         }
 
-        #reviewInput {
-            display: none;
-            width: 100%;
-            max-width: 600px;
-            padding: 10px;
-            margin: 20px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        #reviewButton {
-            display: none;
-            background-color: #3498db;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-            width: auto;
-            animation: scaleUp 0.5s ease-in-out;
-        }
-
-        #reviewButton:hover {
-            background-color: #2672af;
-        }
-
         #reviews {
             display: none;
-            text-align: left;
+            text-align: center;
             max-width: 600px;
-            margin: 20px auto;
-        }
-
-        #reviews h2 {
-            color: #3498db;
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            margin: 60px auto;
         }
 
         #backButton {
@@ -168,10 +131,8 @@
     </p>
     <button id="invitationButton" onclick="playVideo()">Принять приглашение</button>
     <iframe id="apologyVideo" width="800" height="450" src="https://www.youtube.com/embed/12qTHu3COOQ?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>
-    <textarea id="reviewInput" placeholder="Напиши плиз как тебе моя работа..." rows="4"></textarea>
-    <button id="reviewButton" onclick="submitReview()">Отправить отзыв</button>
     <div id="reviews">
-        <h2>Ваши прекрасные отзывы</h2>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4cAVYNgaXw1MuSst0s30tbTB7NHfqFi0dD5HEOrqKGfxo4g/viewform?embedded=true" width="640" height="419" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>
     </div>
     <button id="backButton" onclick="goBack()" style="display: none;">Назад</button>
     <script>
@@ -182,86 +143,39 @@
         // Переменные для отслеживания состояния страницы
         var invitationButton = document.getElementById('invitationButton');
         var backButton = document.getElementById('backButton');
+        var textElement = document.getElementById('text');
+        var originalText = textElement.innerHTML;
 
         function playVideo() {
             var videoFrame = document.getElementById('apologyVideo');
             var title = document.getElementById('title');
-            var text = document.getElementById('text');
-            var reviewInput = document.getElementById('reviewInput');
-            var reviewButton = document.getElementById('reviewButton');
             var reviewsContainer = document.getElementById('reviews');
 
             document.querySelector('img').style.display = 'none';
             videoFrame.style.display = 'block';
-            reviewInput.style.display = 'block';
-            reviewButton.style.display = 'block';
             backButton.style.display = 'block';
 
             invitationButton.style.display = 'none';
             title.innerHTML = "БЕЗУМНО МОЖНО БЫТЬ ПЕРВЫМ";
-            text.style.display = 'none';
+            textElement.style.display = 'none';
 
             reviewsContainer.style.display = 'block';
-        }
-
-        function submitReview() {
-            var reviewInput = document.getElementById('reviewInput');
-            var reviewsContainer = document.getElementById('reviews');
-            var reviewText = reviewInput.value;
-
-            var reviewElement = document.createElement('p');
-            reviewElement.textContent = reviewText;
-
-            reviewsContainer.appendChild(reviewElement);
-            saveReview(reviewText);
-
-            reviewInput.value = '';
-        }
-
-        function saveReview(review) {
-            var savedReviews = getReviewsFromStorage();
-            savedReviews.push(review);
-            setReviewsToStorage(savedReviews);
-        }
-
-        function loadReviews() {
-            var reviewsContainer = document.getElementById('reviews');
-            var savedReviews = getReviewsFromStorage();
-
-            savedReviews.forEach(function (reviewText) {
-                var reviewElement = document.createElement('p');
-                reviewElement.textContent = reviewText;
-                reviewsContainer.appendChild(reviewElement);
-            });
-        }
-
-        function getReviewsFromStorage() {
-            var savedReviews = localStorage.getItem('reviews');
-            return savedReviews ? JSON.parse(savedReviews) : [];
-        }
-
-        function setReviewsToStorage(reviews) {
-            localStorage.setItem('reviews', JSON.stringify(reviews));
         }
 
         function goBack() {
             // Возврат к приглашению
             var videoFrame = document.getElementById('apologyVideo');
             var title = document.getElementById('title');
-            var text = document.getElementById('text');
-            var reviewInput = document.getElementById('reviewInput');
-            var reviewButton = document.getElementById('reviewButton');
             var reviewsContainer = document.getElementById('reviews');
 
             document.querySelector('img').style.display = 'block';
             videoFrame.style.display = 'none';
-            reviewInput.style.display = 'none';
-            reviewButton.style.display = 'none';
             backButton.style.display = 'none';
 
             invitationButton.style.display = 'block';
             title.innerHTML = "ВИКА ПОЙДЕМ ВАЛОРАНТ?";
-            text.style.display = 'block';
+            textElement.style.display = 'block';
+            textElement.innerHTML = originalText;
 
             reviewsContainer.style.display = 'none';
         }
